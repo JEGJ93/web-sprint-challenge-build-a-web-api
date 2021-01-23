@@ -1,4 +1,7 @@
 const express = require('express');
+
+const projectRouter = require('./projects/projects-router')
+const actionRouter = require('./actions/actions-router')
 const server = express();
 const helmet = require('helmet');
 
@@ -6,6 +9,8 @@ server.use(express.json());
 server.use(helmet());
 
 server.use(logger);
+server.use('/api/project', projectRouter);
+server.use('/api/action', actionRouter);
 
 
 

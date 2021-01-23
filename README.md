@@ -128,7 +128,38 @@ There are two possible ways to submit this project to Canvas. Lambda Staff will 
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. The core features of Node.js and Express and why they are useful.
-1. Understand and explain the use of Middleware.
-1. The basic principles of the REST architectural style.
-1. Understand and explain the use of Express Routers.
-1. Describe tooling used to manually test the correctness of an API.
+
+    Express - is a web application framework - it sits on top of Node web server module
+
+    Node - just lets us run javascript outside of the browser to be used for backend development 
+    
+
+2. Understand and explain the use of Middleware.
+
+  Middleware - is software that lies between an operating system and the applications running on it. Essentially functioning as hidden translation layer, middleware enables communication and data management for distributed applications
+
+
+3. The basic principles of the REST architectural style.
+
+  - Uniform Interface - should have one logical URL, that provides a way to fetch data easily
+
+    - Client-server - Both the Client app and the Server app should in no way depend on each other to work
+
+    - Stateless - Treat every request as new
+
+    - Cacheable - Caching brings performance improvement for the    client-side and better scope for scalability for a server because the load has reduced.
+    
+    - Layered Systems - allows you deploy multiple servers with different parts of data from one another
+
+    - Code on demand - Allows you to perform executable code
+
+
+4. Understand and explain the use of Express Routers.
+
+   Express Router - is used to create router handlers that allow us to handle validations and error codes
+
+
+5. Describe tooling used to manually test the correctness of an API.
+
+
+  Tools such as POSTMAN allows us to varify the code that we write is actually working properly in the way that it is supposed to work
