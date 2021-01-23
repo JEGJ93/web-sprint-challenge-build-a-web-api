@@ -23,6 +23,19 @@ router.get('/', (req, res) => {
   });
 
   router.get('/:id', validateProjectId, (req, res) => {
+    Project.get(req.params.id)
+    .then(actions => {
+    res.status(200).json(actions)
+  })
+  .catch(error => {
+    console.log(error);
+    res.status(500).json({
+      message: 'Error getting the project by id',
+    });
+  });
+})
+
+router.get('/:id/actions', (req, res) => {
     Project.getProjectActions(req.params.id)
     .then(actions => {
     res.status(200).json(actions)
@@ -80,7 +93,7 @@ function validateProjectId(req, res, next) {
         req.project = project;
         next(); 
       } else {
-        next({code: 400, message: "Invalid user ID"}); 
+        next({code: 404, message: "Invalid user ID"}); 
       }
     })
     .catch(err => {

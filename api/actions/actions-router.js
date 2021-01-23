@@ -22,7 +22,20 @@ router.get('/', (req, res) => {
     });
   });
 
-router.post('/:id', validateAction, (req, res) => {
+  router.get('/:id', (req, res) => {
+    Actions.get(req.params.id)
+    .then(action => {
+      res.status(200).json(action);
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).json({
+        message: 'Error retrieving the actions',
+      });
+    });
+  });
+
+router.post('/', validateAction, (req, res) => {
     Actions.insert(req.action)
     .then(action => {
       res.status(201).json(action);
@@ -35,7 +48,7 @@ router.post('/:id', validateAction, (req, res) => {
 router.put('/:id', validateActionId, validateAction, (req, res) => {
     Actions.update(req.params.id, req.body)
   .then(action => {
-    res.status(200).json(`Action ${action.notes} Updated`);
+    res.status(200).json(action);
   })
   .catch(error => {
     console.log(error);
@@ -81,10 +94,10 @@ function validateActionId(req, res, next) {
   
   function validateAction(req, res, next) {
     if(req.body) {
-      if(req.body.notes && req.body.description) {
-        const action = {...req.body, project_id: req.params.id};
-        req.action = action;
-        next();
+      if(req.body.notes && req.body.description && req.body.project_id) {
+            const action = {...req.body};
+            req.action = action;
+            next();
       } else {
         next({code: 400, message: "Missing required note field"});
       }
