@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
     })
     .catch(error => {
       console.log(error);
-      res.status(500).json({
+      res.status(404).json({
         message: 'Error retrieving the actions',
       });
     });
@@ -79,7 +79,7 @@ function validateActionId(req, res, next) {
       if(action) {
         next(); 
       } else {
-        next({code: 400, message: "Invalid action ID"}); 
+        next({code: 404, message: "Invalid action ID"}); 
       }
     })
     .catch(err => {
