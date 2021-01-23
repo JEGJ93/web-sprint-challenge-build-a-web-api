@@ -1,5 +1,34 @@
 const express = require('express');
 const server = express();
+const helmet = require('helmet');
+
+server.use(express.json());
+server.use(helmet());
+
+server.use(logger);
+
+
+
+server.get('/', (req, res) => {
+    res.send(`<h2>Let's write some middleware!</h2>`);
+});
+
+function logger(req, res, next) {
+    console.log(req);
+    let date = new Date();
+
+    console.log(
+        `${req.method} request,
+        URL: ${req.headers.host}${req.originalUrl},
+        Date: ${date}`
+    );
+
+    next();
+}
+
+server.use((error, req, res, next) => {
+    res.status(error.code).json({message: "Error:", error})
+})
 
 // Complete your server here!
 // Do NOT `server.listen()` inside this file!
