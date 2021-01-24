@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
     });
   });
 
-  router.get('/:id', (req, res) => {
+  router.get('/:id', validateActionId, (req, res) => {
     Actions.get(req.params.id)
     .then(action => {
       res.status(200).json(action);
